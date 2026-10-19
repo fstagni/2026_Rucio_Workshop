@@ -103,40 +103,44 @@ columns: is-6
 
 :: right ::
 
+<img src="/public/images/duw12/directions/architecture.png" class="w-full mb-4">
+
 <AdmonitionType type='important' >
 DIRAC and DiracX will live together for a while. One functionality at a time, we'll eventually migrate all from DIRAC to DiracX.
 </AdmonitionType>
 
 <AdmonitionType type='note' >
-Business continuity for the existing user communities is our top priority: "adopt what already exists in DiracX; DIRAC is only patched, so that DiracX can progress".
+"Adopt what already exists in DiracX; DIRAC is only patched, so that DiracX can progress".
 </AdmonitionType>
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lm-lm
 title: dev-model
+columns: is-7
 ---
 
 :: title ::
 
 # The development model
 
-:: content ::
+:: left ::
 
 **SCRUM since 21 January 2026**
 - 2-week sprints; planning and refinement in one weekly meeting
 - Monthly `DOps` meeting with the community representatives: where use cases are shared, and priorities agreed
 - 3 hackathons per year, plus one workshop
 
-**Large changes** start with a **proof of concept**, then an **ADR** that the other developers approve
-- ADRs and roadmap are public, for everyone to review
+**Large changes** start with a **proof of concept**, then an **ADR** that the other developers approve (ADRs and roadmap are public)
 
-<AdmonitionType type='note' >
-"Individuals and interactions over processes and tools": the process is a guide, not a rule, and it adapts as we learn.
-</AdmonitionType>
+*"Individuals and interactions over processes and tools": the process is a guide, not a rule, and it adapts as we learn.*
 
 (From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
+
+:: right ::
+
+<img src="/public/images/duw12/directions/process.png" class="w-4/5 mx-auto">
 
 ---
 layout: top-title
@@ -160,17 +164,18 @@ title: numbers
 (From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lm-lm
 title: not-a-port
+columns: is-6
 ---
 
 :: title ::
 
 # Not a port: a reimplementation
 
-:: content ::
+:: left ::
 
 **Future clients**
 - A DMS: a DIRAC client calls DiracX instead of DIRAC, over the same databases
@@ -181,10 +186,15 @@ title: not-a-port
 - New requirements need new tables and new logic; DIRAC's WMS is used as it is, as a backend
 
 **Standard protocols**
-- Systems internal to DIRAC give way to standards: monitoring becomes **OpenTelemetry**, identity is **OIDC**, sandboxes go to **S3**
-- We ship a minimal option for each, so DiracX works out of the box, as DIRAC does
+- Systems internal to DIRAC give way to standards: **OpenTelemetry** monitoring, **OIDC** identity, **S3** sandboxes
 
 (From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
+
+:: right ::
+
+<img src="/public/images/duw12/directions/clients.png" class="h-32 mx-auto mb-2">
+<img src="/public/images/duw12/directions/data_model.png" class="h-28 mx-auto mb-2">
+<img src="/public/images/duw12/directions/protocols.png" class="h-16 mx-auto">
 
 ---
 layout: section
@@ -197,31 +207,37 @@ title: ts
 ## Workgraphs, transformations and parcels
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lm-lm
 title: ts-what
+columns: is-6
 ---
 
 :: title ::
 
 # Transformation System: what it is (and what it is not)
 
-:: content ::
+:: left ::
 
 <AdmonitionType type='important' >
 Not the DIRAC Transformation System with a new coat of paint: same underpinnings and lessons learned, but a different shape.
 </AdmonitionType>
 
 - **One system where DIRAC had three**: Transformation, Production, and the "job" half of the WMS
-- DIRAC's WMS is two distinct abstractions, and DiracX pulls them apart:
-  - **Pilots** (getting hold of resources) → Compute Backends
-  - **Jobs** (describing the work to run) → Transformation System
 - **Not** only for centrally-run activity: "user jobs" change too
-
-All in the ADRs: [DX-ADR-002 → 009](https://github.com/DIRACGrid/diracx/pull/1042), with [explanations](https://diracx--1042.org.readthedocs.build/en/1042/user/explanations/transformation-system/) and a [playground](https://diracx--1042.org.readthedocs.build/en/1042/playground/)
+- All in the ADRs: [DX-ADR-002 → 009](https://github.com/DIRACGrid/diracx/pull/1042), with [explanations](https://diracx--1042.org.readthedocs.build/en/1042/user/explanations/transformation-system/) and a [playground](https://diracx--1042.org.readthedocs.build/en/1042/playground/)
 
 (From "The DiracX Transformation System", C. Burr, [DUW12](https://indico.cern.ch/event/1588323/contributions/7264643/))
+
+:: right ::
+
+DIRAC's WMS is two distinct abstractions, and DiracX pulls them apart:
+
+<img src="/public/images/duw12/ts/wms.svg" class="h-52 mx-auto mt-2">
+
+- **Pilots** (getting hold of resources) → Compute Backends
+- **Jobs** (describing the work to run) → Transformation System
 
 ---
 layout: top-title-two-cols
@@ -247,6 +263,30 @@ columns: is-6
 - **Feeder**: external ones bring work in from outside the workgraph (metadata queries, run ranges, seeds) – *this is where your catalogue plugs in*; internal ones follow the edges of the graph
 - **Packer**: groups inputs into parcels (~3 GB, same storage, same run, ...); a parcel is **never retried**: a failure sends its *inputs* back to the pool
 - **Dispatcher**: chooses the backend (native pilots, push to HPC, HTCondor, legacy DIRAC, ...); user jobs take exactly the same path
+
+(From "The DiracX Transformation System", C. Burr, [DUW12](https://indico.cern.ch/event/1588323/contributions/7264643/))
+
+---
+layout: top-title
+color: diracx-light
+align: cm
+title: ts-pictures
+---
+
+:: title ::
+
+# Transformation System: the model, in pictures
+
+:: content ::
+
+<div class="flex justify-center gap-8">
+  <img src="/public/images/duw12/ts/generic-proc-wg.svg" class="h-44">
+  <img src="/public/images/duw12/ts/generic-sim-wg.svg" class="h-44">
+</div>
+
+The two generic workgraphs (data processing: *process + merge*; simulation: *produce + process + merge*), and the workgraph state machine:
+
+<img src="/public/images/duw12/ts/states.svg" class="w-4/5 mx-auto mt-2">
 
 (From "The DiracX Transformation System", C. Burr, [DUW12](https://indico.cern.ch/event/1588323/contributions/7264643/))
 
@@ -287,17 +327,18 @@ title: dms
 # Data Management for DiracX
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lm-lm
 title: dms-elephant
+columns: is-7
 ---
 
 :: title ::
 
 # The elephant in the room
 
-:: content ::
+:: left ::
 
 <AdmonitionType type='important' >
 diracx-Rucio integration is clearly a need for some communities.
@@ -315,58 +356,70 @@ The DUW12 discussion focused on **use cases, not technicalities**: the input col
 
 (From "Data Management for DiracX", C. Haen, [DUW12](https://indico.cern.ch/event/1588323/contributions/7286647/))
 
+:: right ::
+
+<img src="/public/images/duw12/dms/elephant.png" class="w-3/5 mx-auto">
+
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lt-lt
 title: dms-fc
+columns: is-6
 ---
 
 :: title ::
 
 # Data Management: the File Catalog
 
-:: content ::
+:: left ::
 
 - The `FileCatalog` class **abstracts the actual catalog** behind, and defines the interface
-  - Used by everything: jobs, CLI, agents, etc.
-  - **Multiple file catalogs** can be used together (via the `FCConditionParser` – LHCb does)
-- The **Dirac File Catalog (DFC)**:
-  - Directories, files, replicas: very *POSIX-like*
-  - Attributes, metadata and datasets (for files and directories)
-  - Permissions via the security manager (UID/GID/VOMS-role based)
-  - **Multi-VO**: GridPP has implemented Multi-VO metadata
-    - Reminder: DiracX *must* be multi-VO
+  - used by everything: jobs, CLI, agents, etc.
+  - **multiple file catalogs** can be used together (`FCConditionParser` – LHCb does)
+- The **Dirac File Catalog (DFC)**: very *POSIX-like* (directories, files, replicas), with attributes, metadata, datasets, and a security manager for permissions
+  - **Multi-VO**: GridPP has implemented Multi-VO metadata (and DiracX *must* be multi-VO)
 
 <AdmonitionType type='tip' >
-The DFC will be in DiracX, but <strong>the form is still to be decided</strong>. It needs all the input from every community, and the way to transition will depend on that.
+The DFC will be in DiracX, but <strong>the form is still to be decided</strong>: it needs input from every community.
 </AdmonitionType>
+
+:: right ::
+
+<img src="/public/images/duw12/dms/file_catalog_multiple.png" class="w-11/12 mx-auto">
 
 (From "Data Management for DiracX", C. Haen, [DUW12](https://indico.cern.ch/event/1588323/contributions/7286647/))
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lt-lt
 title: dms-se
+columns: is-6
 ---
 
 :: title ::
 
 # Data Management: Storage Elements and transfers
 
-:: content ::
+:: left ::
 
 - **Storage Elements**: the concepts stay (abstraction of storage endpoints, protocol resolution from LFN to URL)
-- **Protocols & GFAL2**: the concepts stay; arguing for a *canonical* way to handle data access on the grid
-  - used by DIRAC, Rucio, sites...
+- **Protocols & GFAL2**: the concepts stay; arguing for a *canonical* way to handle data access on the grid (used by DIRAC, Rucio, sites...)
 - **FTS**: DIRAC is capable of third-party-copy natively (with caveats)
-  - Open question: delegate everything to FTS? How do you use FTS (multiple instances, activities, shares)?
+  - open question: delegate everything to FTS? And how do you use it (multiple instances, activities, shares)?
 
-From these building blocks, the future plans:
-- Data popularity, storage usage reports
-- Data placement, FC/SE consistency
-- Analytics
+From these building blocks, the future plans: data popularity, storage usage reports, data placement, FC/SE consistency, analytics
+
+:: right ::
+
+Storage Elements, from a single endpoint to SE bases and groups:
+
+<img src="/public/images/duw12/dms/se_base.png" class="h-36 mx-auto">
+
+and the protocols, from LFN to URL:
+
+<img src="/public/images/duw12/dms/protocols.png" class="h-20 mx-auto">
 
 (From "Data Management for DiracX", C. Haen, [DUW12](https://indico.cern.ch/event/1588323/contributions/7286647/))
 
@@ -455,16 +508,7 @@ title: roadmap
 
 :: content ::
 
-**Now**
-
-| | |
-|---|---|
-| **Transformation System** | first in line |
-| **Job Wrapper** | |
-| **Data Management System** | |
-| **Resource status** | read side first |
-
-**Later** (not fixed in time), and spikes: WMS matcher, interCEde, analytics and observability, MCP server for agents, clients (web app, CLI)
+<img src="/public/images/duw12/directions/roadmap.png" class="w-4/5 mx-auto">
 
 <AdmonitionType type='important' >
 Priorities, not commitments. New requirements can reorder this page, and the team writes the detailed plan.
@@ -473,17 +517,18 @@ Priorities, not commitments. New requirements can reorder this page, and the tea
 (From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lm-lm
 title: installations
+columns: is-6
 ---
 
 :: title ::
 
 # If you run an installation today
 
-:: content ::
+:: left ::
 
 What you can count on:
 
@@ -492,9 +537,12 @@ What you can count on:
 - **No data migration** for anything but the transformation system, which has its own tables
 - Your **extension keeps working** on DIRAC while you move
 - **Increments to test**, shown at DOps whenever a sprint delivers one
-  - you test them with your own workflows, against the transformation system
 
 (From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
+
+:: right ::
+
+<img src="/public/images/duw12/directions/increment_cycle.png" class="w-4/5 mx-auto">
 
 ---
 layout: top-title-two-cols
