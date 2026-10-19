@@ -165,6 +165,34 @@ title: numbers
 <span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
 
 ---
+layout: top-title
+color: diracx-light
+align: cm
+title: ai-landscape
+---
+
+:: title ::
+
+# AI is changing the landscape (also) for us
+
+:: content ::
+
+<AdmonitionType type='note' >
+"AI's primary role in software development is that of an amplifier." -- DORA 2025, State of AI-assisted Software Development
+</AdmonitionType>
+
+- **Writing code got cheap**: spikes and proofs of concept are easier to try than ever
+- But **deciding what to build, and checking it, did not get cheaper**
+  - It does not change our process: it shows its weak points sooner
+- Vague specification → verbose, AI-generated issues that go stale
+  - a clear **ADR with a scenario test** is what an agent -- or a newcomer -- can implement
+- The **review bottleneck** grows: more code means more to read, by the same two people
+- **A new kind of user**: DiracX speaks HTTP and OAuth2, so an agent can use it through MCP
+  - IHEP already operates DIRAC with an agent and MCP (DUW12)
+
+<span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
+
+---
 layout: top-title-two-cols
 color: diracx-light
 align: cm-lm-lm
