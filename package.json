@@ -1,0 +1,32 @@
+{
+  "name": "2026_Rucio_Workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "slidev build --download",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fstagni/2026_Rucio_Workshop.git"
+  },
+  "keywords": [
+    "diracx",
+    "dirac",
+    "rucio",
+    "RCW26"
+  ],
+  "author": "Federico Stagni",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/fstagni/2026_Rucio_Workshop/issues"
+  },
+  "homepage": "https://github.com/fstagni/2026_Rucio_Workshop#readme",
+  "description": "",
+  "dependencies": {
+    "slidev-theme-neversink": "^0.4.0"
+  },
+  "devDependencies": {
+    "@slidev/cli": "^52.9.1"
+  }
+}
