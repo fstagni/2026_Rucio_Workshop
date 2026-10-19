@@ -42,7 +42,8 @@ title: diracgrid
 The DiracGrid project develops and maintains the whole software stack:
 - [DIRAC](https://github.com/DIRACGrid/DIRAC) (the "legacy" workhorse)
 - [DiracX](https://github.com/DIRACGrid/diracx) (the cloud-native rewrite)
-- [DiracX-Web](https://github.com/DIRACGrid/diracx-web), extensions, documentation, ...
+
+<br>
 
 In general, DIRAC has a very active community of users and developers:
 - Apart from the regular zoom meetings, we meet at **3 hackathons per year**, plus one **workshop**
@@ -64,12 +65,13 @@ title: since-last-year
 
 Since we met one year ago (8th Rucio Community Workshop):
 
-- **LHCb running DiracX in production**, at scale, every day
 - **CMS and FCC joined the effort** (summer 2026) – bringing new requirements, scale, and energy to the project
 - **New development process** adopted since January 2026
   - SCRUM-based, with 2-week sprints and regular checkpoint meetings
 - **ADRs for everything** – Architecture Design Records guide every major decision before code is written
   - Transparent, reviewable, community-driven design process
+
+<br>
 
 <div class="flex justify-center items-center gap-8 mt-4">
   <img src="/public/images/DIRAC-logo-extended.png" class="h-14">
@@ -118,7 +120,7 @@ layout: top-title-two-cols
 color: diracx-light
 align: cm-lm-lm
 title: dev-model
-columns: is-7
+columns: is-4
 ---
 
 :: title ::
@@ -128,19 +130,18 @@ columns: is-7
 :: left ::
 
 **SCRUM since 21 January 2026**
-- 2-week sprints; planning and refinement in one weekly meeting
+- 2-week sprints; planning and refinement in a weekly `DDev` meeting
 - Monthly `DOps` meeting with the community representatives: where use cases are shared, and priorities agreed
-- 3 hackathons per year, plus one workshop
+
+:: right ::
+
+<img src="/public/images/duw12/directions/process.png" class="w-4/5 mx-auto">
 
 **Large changes** start with a **proof of concept**, then an **ADR** that the other developers approve (ADRs and roadmap are public)
 
 *"Individuals and interactions over processes and tools": the process is a guide, not a rule, and it adapts as we learn.*
 
-(From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
-
-:: right ::
-
-<img src="/public/images/duw12/directions/process.png" class="w-4/5 mx-auto">
+<span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
 
 ---
 layout: top-title
@@ -161,14 +162,14 @@ title: numbers
 - Known bottlenecks: **specification** and **review** (two people give three quarters of first reviews)
   - clear ADRs with scenario tests are what an implementer (human or AI agent) needs
 
-(From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
+<span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
 
 ---
 layout: top-title-two-cols
 color: diracx-light
 align: cm-lm-lm
 title: not-a-port
-columns: is-6
+columns: is-8
 ---
 
 :: title ::
@@ -188,7 +189,7 @@ columns: is-6
 **Standard protocols**
 - Systems internal to DIRAC give way to standards: **OpenTelemetry** monitoring, **OIDC** identity, **S3** sandboxes
 
-(From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
+<span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
 
 :: right ::
 
@@ -226,9 +227,9 @@ Not the DIRAC Transformation System with a new coat of paint: same underpinnings
 
 - **One system where DIRAC had three**: Transformation, Production, and the "job" half of the WMS
 - **Not** only for centrally-run activity: "user jobs" change too
-- All in the ADRs: [DX-ADR-002 → 009](https://github.com/DIRACGrid/diracx/pull/1042), with [explanations](https://diracx--1042.org.readthedocs.build/en/1042/user/explanations/transformation-system/) and a [playground](https://diracx--1042.org.readthedocs.build/en/1042/playground/)
+- All in the ADRs: [DX-ADR-002 → 009](https://diracx.diracgrid.org/en/latest/adr/), with [explanations](https://diracx.diracgrid.org/en/latest/user/explanations/transformation-system/) and a [playground](https://diracx.diracgrid.org/en/latest/playground/)
 
-(From "The DiracX Transformation System", C. Burr, [DUW12](https://indico.cern.ch/event/1588323/contributions/7264643/))
+<span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
 
 :: right ::
 
@@ -244,7 +245,7 @@ layout: top-title-two-cols
 color: diracx-light
 align: cm-lm-lm
 title: ts-model
-columns: is-6
+columns: is-3
 ---
 
 :: title ::
@@ -264,7 +265,7 @@ columns: is-6
 - **Packer**: groups inputs into parcels (~3 GB, same storage, same run, ...); a parcel is **never retried**: a failure sends its *inputs* back to the pool
 - **Dispatcher**: chooses the backend (native pilots, push to HPC, HTCondor, legacy DIRAC, ...); user jobs take exactly the same path
 
-(From "The DiracX Transformation System", C. Burr, [DUW12](https://indico.cern.ch/event/1588323/contributions/7264643/))
+<span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
 
 ---
 layout: top-title
@@ -288,7 +289,7 @@ The two generic workgraphs (data processing: *process + merge*; simulation: *pro
 
 <img src="/public/images/duw12/ts/states.svg" class="w-4/5 mx-auto mt-2">
 
-(From "The DiracX Transformation System", C. Burr, [DUW12](https://indico.cern.ch/event/1588323/contributions/7264643/))
+<span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
 
 ---
 layout: top-title
@@ -299,7 +300,7 @@ title: ts-usecases
 
 :: title ::
 
-# Transformation System: does it do everything we need?
+## Transformation System: does it do everything we need?
 
 :: content ::
 
@@ -316,7 +317,7 @@ Everything **composes**: any number of transformations, any shape of graph. Each
 Have a use case that doesn't fit? The <a href="https://github.com/DIRACGrid/diracx/pull/1042">ADRs</a> are still open for input.
 </AdmonitionType>
 
-(From "The DiracX Transformation System", C. Burr, [DUW12](https://indico.cern.ch/event/1588323/contributions/7264643/))
+<span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
 
 ---
 layout: section
@@ -354,7 +355,7 @@ DIRAC data management capabilities are NOT going away. Quite the opposite, actua
 
 The DUW12 discussion focused on **use cases, not technicalities**: the input collected there will drive the future Data Management ADR!
 
-(From "Data Management for DiracX", C. Haen, [DUW12](https://indico.cern.ch/event/1588323/contributions/7286647/))
+<span class="stamp">From "Data Management for DiracX" · C. Haen · <a href="https://indico.cern.ch/event/1588323/contributions/7286647/">DUW12</a></span>
 
 :: right ::
 
@@ -388,7 +389,7 @@ The DFC will be in DiracX, but <strong>the form is still to be decided</strong>:
 
 <img src="/public/images/duw12/dms/file_catalog_multiple.png" class="w-11/12 mx-auto">
 
-(From "Data Management for DiracX", C. Haen, [DUW12](https://indico.cern.ch/event/1588323/contributions/7286647/))
+<span class="stamp">From "Data Management for DiracX" · C. Haen · <a href="https://indico.cern.ch/event/1588323/contributions/7286647/">DUW12</a></span>
 
 ---
 layout: top-title-two-cols
@@ -421,7 +422,7 @@ and the protocols, from LFN to URL:
 
 <img src="/public/images/duw12/dms/protocols.png" class="h-20 mx-auto">
 
-(From "Data Management for DiracX", C. Haen, [DUW12](https://indico.cern.ch/event/1588323/contributions/7286647/))
+<span class="stamp">From "Data Management for DiracX" · C. Haen · <a href="https://indico.cern.ch/event/1588323/contributions/7286647/">DUW12</a></span>
 
 ---
 layout: side-title
@@ -514,7 +515,7 @@ title: roadmap
 Priorities, not commitments. New requirements can reorder this page, and the team writes the detailed plan.
 </AdmonitionType>
 
-(From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
+<span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
 
 ---
 layout: top-title-two-cols
@@ -538,7 +539,7 @@ What you can count on:
 - Your **extension keeps working** on DIRAC while you move
 - **Increments to test**, shown at DOps whenever a sprint delivers one
 
-(From "**DiracX developments: directions**", A. Boyer, [DUW12](https://indico.cern.ch/event/1588323/contributions/7301774/))
+<span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
 
 :: right ::
 
