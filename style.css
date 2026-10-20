@@ -146,3 +146,29 @@
   color: inherit;
   text-decoration: underline;
 }
+
+/* DiracX logo, part of the template (global-bottom.vue) */
+.global-logo {
+  position: fixed;
+  left: 16px;
+  bottom: 12px;
+  height: 30px;
+  opacity: 0.9;
+  z-index: 40;
+}
+
+/* Quotes (e.g. the DX-ADR definition) */
+.slidev-layout blockquote {
+  border-left: 4px solid var(--diracx-primary);
+  background: rgba(0, 175, 202, 0.06);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-style: italic;
+  color: var(--diracx-dark);
+}
+
+/* Subtle framing for the extracted diagrams */
+.slidev-layout img[src*='/duw12/'] {
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(78, 85, 88, 0.18);
+}

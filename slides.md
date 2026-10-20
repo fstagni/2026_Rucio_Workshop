@@ -8,10 +8,13 @@ title: DiracGrid software stacks
 theme: neversink
 neversink_string: "DiracGrid @ RCW26"
 download: true
+transition: slide-left
 ---
 
 # DiracGrid software stacks
 ## Status, DiracX updates and plans
+
+<img src="/public/images/diracx-logo-square.svg" class="h-24 mx-auto my-4">
 
 **Federico Stagni** <Email v="federico.stagni@cern.ch" />
 
@@ -271,7 +274,7 @@ DIRAC's WMS is two distinct abstractions, and DiracX pulls them apart:
 ---
 layout: top-title-two-cols
 color: diracx-light
-align: cm-lm-lm
+align: cm-lt-lt
 title: ts-model
 columns: is-3
 ---
@@ -284,16 +287,16 @@ columns: is-3
 
 > A **workgraph** is a directed acyclic graph of **transformations**. Each transformation maintains a pool of **inputs**: a **feeder** tops up the pool from the experiment's metadata catalogue, a **packer** groups pooled inputs into **parcels**, and a **dispatcher** hands each parcel to a compute or data **backend**, which executes it as a job or a request. -- DX-ADR-002
 
+<span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
+
 :: right ::
 
-- **Workgraph**: the entire thing, what DIRAC called a *production*; its status is constrained by its members' (start, scout, drain, halt, cancel)
-- **Transformation**: applies *one* operation to a pool of inputs (embarrassingly parallel); **compute** (runs jobs) or **data** (runs requests: copy or remove replicas)
-- **Inputs**: processed *exactly once, or not at all* (`Unassigned` → `Assigned` → `Processed`/`NotProcessed`)
-- **Feeder**: external ones bring work in from outside the workgraph (metadata queries, run ranges, seeds) – *this is where your catalogue plugs in*; internal ones follow the edges of the graph
-- **Packer**: groups inputs into parcels (~3 GB, same storage, same run, ...); a parcel is **never retried**: a failure sends its *inputs* back to the pool
-- **Dispatcher**: chooses the backend (native pilots, push to HPC, HTCondor, legacy DIRAC, ...); user jobs take exactly the same path
-
-<span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
+- **Workgraph**: the entire thing, what DIRAC called a *production*; its status is constrained by its members'
+- **Transformation**: applies *one* operation to a pool of inputs; **compute** (runs jobs) or **data** (runs requests: copy or remove replicas)
+- **Inputs**: processed *exactly once, or not at all* (`Unassigned` → `Assigned` → `Processed`)
+- **Feeder**: external ones bring work in from outside (metadata queries, run ranges, seeds) – *your catalogue plugs in here*; internal ones follow the graph edges
+- **Packer**: groups inputs into parcels (~3 GB, ...); a parcel is **never retried**: failures send its *inputs* back to the pool
+- **Dispatcher**: chooses the backend (native pilots, HPC push, HTCondor, legacy DIRAC, ...); user jobs take the same path
 
 ---
 layout: top-title
@@ -332,18 +335,16 @@ title: ts-usecases
 
 :: content ::
 
-Everything **composes**: any number of transformations, any shape of graph. Each use case changes only the shape of the graph, and which feeder, packer, hooks and actions are plugged in. Examples from DUW12:
+Everything **composes**: each use case changes only the shape of the graph, and which feeder, packer, hooks and actions are plugged in. Examples from DUW12:
 
 - **Forking outputs**: one output, many consumers, each tracking its own progress
 - **Removing replicas after N uses**: a data transformation whose packer delays each file until all consumers have processed it
 - **Correlated processing**: e.g. a packer looks up each file's RAW ancestor and adds it to the parcel
 - **Staging from tape**: a data transformation stages; the packer delays each file until on buffer
-- **Scouting**: run on a small sample first, for resource estimation and reliability, with (possibly manual) approval actions
+- **Scouting**: run on a small sample first, for resource estimation and reliability, with (possibly manual) approvals
 - **Retrying and splitting**: a hook decides each failed input's fate; partially-processed inputs are split
 
-<AdmonitionType type='note' >
-Have a use case that doesn't fit? The <a href="https://github.com/DIRACGrid/diracx/pull/1042">ADRs</a> are still open for input.
-</AdmonitionType>
+Have a use case that doesn't fit? The [ADRs](https://github.com/DIRACGrid/diracx/pull/1042) are still open for input.
 
 <span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
 
