@@ -502,6 +502,73 @@ This also means that:
 - No change for the download/upload from jobs: still done via DIRAC's `DataManager`
 
 ---
+layout: top-title-two-cols
+color: diracx-light
+align: cm-lt-lt
+title: rucio-belle2-ctao
+columns: is-6
+---
+
+:: title ::
+
+# Rucio in production with DIRAC: Belle II and CTAO
+
+:: left ::
+
+**Belle II** -- Rucio at the core of data management:
+
+- File catalog since 2021: the `RucioFileCatalog` (they do *not* use the DFC)
+- Metadata catalog since 2025, replacing AMGA
+- DDM (transfers, deletions, SE occupancy) driven by Rucio **subscriptions** (RAW, intermediate datasets, final products, user copies)
+- DIRAC jobs upload/download via the `DataManager` + `RucioFileCatalog` plugin; users have both DIRAC and Rucio clients
+- 5 TB user quota from Rucio accounting, blocking job submission when full
+
+<span class="stamp">From "Belle II Status" · P. Gebeline · <a href="https://indico.cern.ch/event/1588323/contributions/7264817/">DUW12</a></span>
+
+:: right ::
+
+**CTAO** -- Rucio in the DPPS:
+
+- Bulk Data Management (**BDMS**) based on Rucio, plus file/metadata catalog
+- DPPS v0.9: WMS on CTADIRAC v3.2.0 / DIRAC v9.1.20, BDMS (Rucio), FTS, IAM, ...
+- Production K8s deployment combining **Dirac(X) for WMS/TS and Rucio for data management**, across the 4 CTAO data centers
+- Switch to DiracX starting from the first telescope (LST-1), early 2027
+
+<span class="stamp">From "CTAO report" · CTAO DPPS team · <a href="https://indico.cern.ch/event/1588323/contributions/7264815/">DUW12</a></span>
+
+---
+layout: top-title-two-cols
+color: diracx-light
+align: cm-lt-lt
+title: rucio-cms-fcc
+columns: is-6
+---
+
+:: title ::
+
+# Rucio and DIRAC side by side: CMS and FCC
+
+:: left ::
+
+**CMS** -- Rucio in the CMS computing stack:
+
+- CMS runs its own WMS (HTCondor + GlideinWMS); Rucio is the DMS, DBS the metadata catalog
+- The interplay between Rucio and the WMS is critical for an efficient usage of disk storage
+- Plans: **Rucio, DBS, CRIC integration** in the CMS Production System evolution on DiracX
+
+<span class="stamp">From "CMS Overview" · CMS WM team · <a href="https://indico.cern.ch/event/1588323/contributions/7264818/">DUW12</a></span>
+
+:: right ::
+
+**FCC** -- Rucio tested in parallel:
+
+- Rucio currently separate from DIRAC: every SE has to be registered in both systems
+- Used to replicate the Winter2023 campaign across several sites; more resources registered in Rucio than in DIRAC
+- **DIRAC–Rucio connection to be set up** (high on the FCC next-steps list)
+
+<span class="stamp">From "iLCDirac + FCC" · FCC team · <a href="https://indico.cern.ch/event/1588323/contributions/7264822/">DUW12</a></span>
+
+---
 layout: top-title
 color: diracx-light
 align: cm
