@@ -407,7 +407,7 @@ DIRAC data management capabilities are NOT going away. Quite the opposite, actua
 - As a **catalog**: it's just like another one
 - As a **data movement orchestrator**: external to DiracX, triggered by the Transformation System
 
-The DUW12 discussion focused on **use cases, not technicalities**: the input collected there will drive the future Data Management ADR!
+The **DiracX–Rucio interplay was not discussed** at DUW12: clearly something to define in the months to come. The data-management discussion focused on **use cases, not technicalities** -- the input collected there will drive the future Data Management ADR!
 
 <span class="stamp">From "Data Management for DiracX" · C. Haen · <a href="https://indico.cern.ch/event/1588323/contributions/7286647/">DUW12</a></span>
 
@@ -608,10 +608,10 @@ title: duw12-rest
 
 - **Deployments**: K3S for Belle2, testbed infrastructure at IN2P3, non-Kubernetes deployments
 - **AI-Assisted DIRAC Deployment and Operations at IHEP**: DiracX speaks HTTP and OAuth2, so an agent can use it (via MCP)
+- **Analytics for DiracX: more than a proposal** (D. Kalita, F. Stagni): towards a data-lakehouse analytics platform for DIRAC(X) ([slides](https://fstagni.github.io/2026_DUW_Analytics_DiracX/))
 - **RSS in DIRAC and DiracX**: the Resource Status Service, shared between the stacks
 - **No certificate authentication**: the path towards tokens (goodbye X509)
 - Community status reports: GridPP, Belle2, CMS, LHCb, JINR, CTAO, iLCDirac + FCC, IHEP, EGI and GreenDIGIT
-  - CMS: the use case for a non-DiracX WMS, and how this affects DiracX developments
 
 <AdmonitionType type='note' >
 All materials are (or will be) linked from the <a href="https://indico.cern.ch/event/1588323/timetable/">indico timetable</a>.
