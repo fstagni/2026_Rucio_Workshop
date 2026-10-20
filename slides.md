@@ -349,6 +349,31 @@ Have a use case that doesn't fit? The [ADRs](https://github.com/DIRACGrid/diracx
 <span class="stamp">From "The DiracX Transformation System" · C. Burr · <a href="https://indico.cern.ch/event/1588323/contributions/7264643/">DUW12</a></span>
 
 ---
+layout: top-title
+color: diracx-light
+align: cm
+title: ts-backends
+---
+
+:: title ::
+
+# One Transformation System, many compute backends
+
+:: content ::
+
+- Parcels are dispatched to **pluggable compute backends**: native pilots, push to HPC, **HTCondor**, legacy DIRAC, ...
+- Validated by the **CMS use case**:
+  - CMS keeps **HTCondor + GlideinWMS** as its submission infrastructure: one way in for Grid, HPC, GPU, ARM and Analysis Facilities; scheduling features (quotas, partitioning, data-aware matchmaking); proven at scale (800k running and 1M queued jobs); shared with more than 20 experiments
+  - The **DiracX Transformation System provides the workflow management** – Tier 0, Production, Analysis – joined to HTCondor at the **Access Points**
+  - Same pool, same Access Points: the Transformation System runs **in parallel** with today's systems
+
+<AdmonitionType type='important' >
+"Change what needs changing, keep what works": a pattern of interest for any community wanting to retain its existing WMS.
+</AdmonitionType>
+
+<span class="stamp">From "The CMS use case for a non-DiracX WMS" · CMS WM team · <a href="https://indico.cern.ch/event/1588323/contributions/7264642/">DUW12</a></span>
+
+---
 layout: section
 color: diracx
 title: dms
