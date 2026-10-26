@@ -27,17 +27,18 @@ DiracGrid Technical Coordinator
 <a href="https://indico.cern.ch/event/1628935/" class="ns-c-iconlink"><mdi-open-in-new />indico.cern.ch/event/1628935</a>
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: diracx-light
-align: cm
+align: cm-lm-lm
 title: diracgrid
+columns: is-8
 ---
 
 :: title ::
 
 # What is DiracGrid, actually?
 
-:: content ::
+:: left ::
 
 - An "**interware**" (a tool for doing distributed computing), started by LHCb
 - Today used by a few dozens communities, for managing **jobs** (via pilots), **data**, **productions**, **dataset transfers**, ...
@@ -46,12 +47,215 @@ The DiracGrid project develops and maintains the whole software stack:
 - [DIRAC](https://github.com/DIRACGrid/DIRAC) (the "legacy" workhorse)
 - [DiracX](https://github.com/DIRACGrid/diracx) (the cloud-native rewrite)
 
+
+<div class="flex justify-center items-center gap-8 mt-4">
+  <img src="/public/images/DIRAC-logo-extended.png" class="h-14">
+  <span class="text-3xl">→</span>
+  <img src="/public/images/diracx-logo-full.svg" class="h-14 diracx-logo">
+</div>
+
+
+:: right ::
+
+<AdmonitionType type=info>
+Apart from the regular zoom meetings, we meet at <strong>3 hackathons per year</strong>, plus one <strong>workshop</strong>
+</AdmonitionType>
+
 <br>
 
-In general, DIRAC has a very active community of users and developers:
-- Apart from the regular zoom meetings, we meet at **3 hackathons per year**, plus one **workshop**
-- The [12th Dirac(X) Users' Workshop](https://indico.cern.ch/event/1588323/) was just held, 13–16 October 2026 in Prague
-  - most of what follows comes from there
+The [12th Dirac(X) Users' Workshop](https://indico.cern.ch/event/1588323/) was just held, 13–16 October 2026 in Prague
+
+
+---
+layout: top-title
+color: gray-light
+align: c
+title: core-functionalities
+clicks: 3
+---
+
+:: title ::
+
+## Core functionalities and tools (enormous simplification)
+
+:: content ::
+
+<v-switch>
+<template #0>
+
+### **Core functionalities**
+
+<br>
+
+```mermaid
+%%{init: { 'theme': 'default' }}%%
+flowchart LR
+    WMS["`**WMS**
+    Workload Management System`"]
+    DMS["`**DMS**
+    Data Management`"]
+    PROD["`**Production Management**
+    Workflow Orchestration`"]
+    IS["`**Information System**
+    Resources & Status`"]
+
+    style WMS fill:#bbf,stroke:#88c
+    style DMS fill:#bfb,stroke:#8c8,stroke-width:2px
+    style PROD fill:#eef,stroke:#8ec
+    style IS fill:#fff,stroke:#000
+
+    PROD -->|submits jobs to| WMS
+    PROD -->|gets info from| IS
+    WMS -->|gets info from| IS
+    DMS -->|gets info from| IS
+    PROD -->|gets data loc from| DMS
+    WMS -->|gets data loc from| DMS
+```
+<br>
+<br>
+
+### **Tools** (subset of the existing ones)
+
+<br>
+
+```mermaid
+%%{init: { 'theme': 'default' }}%%
+flowchart TD
+
+    DIRAC(["`**DIRAC / DiracX**`"])
+    RUCIO(["`**Rucio**`"])
+    GLIDE(["`**GlideInWMS+HTCondor**`"])
+    CRIC(["`**CRIC**`"])
+    WM(["`**WMAgent**`"])
+
+    style DIRAC fill:#f90,color:#000,stroke:#c60,stroke-width:3px
+    style RUCIO fill:#4a9,color:#fff,stroke:#276,stroke-width:3px
+    style GLIDE fill:#56b,color:#fff,stroke:#235,stroke-width:3px
+    style CRIC fill:#19b,color:#000,stroke:#239,stroke-width:3px
+    style WM fill:#ee1,color:#003,stroke:#eee,stroke-width:3px
+```
+
+</template>
+<template #1>
+
+# **LHCb**, **JUNO**, **etc...**
+
+<br>
+<br>
+<br>
+<br>
+
+```mermaid
+%%{init: { 'theme': 'default' }}%%
+flowchart TD
+    WMS["`**WMS**
+    Workload Management System`"]
+    DMS["`**DMS**
+    Data Management`"]
+    PROD["`**Production Management**
+    Workflow Orchestration`"]
+    IS["`**Information System**
+    Resources & Status`"]
+
+    style WMS fill:#bbf,stroke:#88c
+    style DMS fill:#bfb,stroke:#8c8,stroke-width:2px
+    style PROD fill:#eef,stroke:#8ec
+    style IS fill:#fff,stroke:#000
+
+    DIRAC(["`**DIRAC / DiracX**`"])
+
+    style DIRAC fill:#f90,color:#000,stroke:#c60,stroke-width:3px
+
+    WMS -->|implemented by| DIRAC
+    DMS -->|implemented by| DIRAC
+    PROD -->|implemented by| DIRAC
+    IS -->|implemented by| DIRAC
+```
+
+</template>
+<template #2>
+
+# **Belle2**, and **CTAO**
+
+<br>
+<br>
+<br>
+<br>
+
+```mermaid
+%%{init: { 'theme': 'default' }}%%
+flowchart TD
+    WMS["`**WMS**
+    Workload Management System`"]
+    DMS["`**DMS**
+    Data Management`"]
+    PROD["`**Production Management**
+    Workflow Orchestration`"]
+    IS["`**Information System**
+    Resources & Status`"]
+
+    style WMS fill:#bbf,stroke:#88c
+    style DMS fill:#bfb,stroke:#8c8,stroke-width:2px
+    style PROD fill:#eef,stroke:#8ec
+    style IS fill:#fff,stroke:#000
+
+    DIRAC(["`**DIRAC / DiracX**`"])
+    RUCIO(["`**Rucio**`"])
+
+    style DIRAC fill:#f90,color:#000,stroke:#c60,stroke-width:3px
+    style RUCIO fill:#4a9,color:#fff,stroke:#276,stroke-width:3px
+
+    WMS -->|implemented by| DIRAC
+    DMS -->|implemented by| RUCIO
+    PROD -->|implemented by| DIRAC
+    IS -->|implemented by| DIRAC
+```
+
+</template>
+<template #3>
+
+# **CMS**
+
+<br>
+<br>
+
+```mermaid
+%%{init: { 'theme': 'default' }}%%
+flowchart TD
+    WMS["`**WMS**
+    Workload Management System`"]
+    DMS["`**DMS**
+    Data Management`"]
+    PROD["`**Production Management**
+    Workflow Orchestration`"]
+    IS["`**Information System**
+    Resources & Status`"]
+
+    style WMS fill:#bbf,stroke:#88c
+    style DMS fill:#bfb,stroke:#8c8,stroke-width:2px
+    style PROD fill:#eef,stroke:#8ec
+    style IS fill:#fff,stroke:#000
+
+    DIRAC(["`**DiracX**`"])
+    RUCIO(["`**Rucio**`"])
+    GLIDE(["`**GlideInWMS+HTCondor**`"])
+    CRIC(["`**CRIC**`"])
+    WM(["`**WMAgent**`"])
+
+    style DIRAC fill:#f90,color:#000,stroke:#c60,stroke-width:3px
+    style RUCIO fill:#4a9,color:#fff,stroke:#276,stroke-width:3px
+    style GLIDE fill:#56b,color:#fff,stroke:#235,stroke-width:3px
+    style CRIC fill:#19b,color:#000,stroke:#239,stroke-width:3px
+    style WM fill:#ee1,color:#003,stroke:#eee,stroke-width:3px
+
+    WMS -->|implemented by| GLIDE
+    DMS -->|implemented by| RUCIO
+    PROD -->|implemented by| WM -->|replaced by| DIRAC
+    IS -->|implemented by| CRIC
+```
+
+</template>
+</v-switch>
 
 ---
 layout: top-title
@@ -66,7 +270,7 @@ title: since-last-year
 
 :: content ::
 
-Since we met one year ago (8th Rucio Community Workshop):
+In the past year (8th Rucio Community Workshop):
 
 - **CMS and FCC joined the effort** (summer 2026) – bringing new requirements, scale, and energy to the project
 - **New development process** adopted since January 2026
@@ -75,48 +279,6 @@ Since we met one year ago (8th Rucio Community Workshop):
   - Transparent, reviewable, community-driven design process
 
 <br>
-
-<div class="flex justify-center items-center gap-8 mt-4">
-  <img src="/public/images/DIRAC-logo-extended.png" class="h-14">
-  <span class="text-3xl">→</span>
-  <img src="/public/images/diracx-logo-full.svg" class="h-14 diracx-logo">
-</div>
-
----
-layout: top-title-two-cols
-color: diracx-light
-align: cm-lm-lm
-title: releases
-columns: is-6
----
-
-:: title ::
-
-# Releases for the DiracGrid stacks
-
-:: left ::
-
-**DIRAC**
-- v9.1, v9.0, v8.0 in maintenance
-  - security fixes, and performance fixes when needed
-- [github.com/DIRACGrid/DIRAC/releases](https://github.com/DIRACGrid/DIRAC/releases)
-
-**DiracX**
-- 23 releases since the first official one (Oct 2025)
-- latest: **v0.6.1** (9 October 2026)
-- [github.com/DIRACGrid/diracx/releases](https://github.com/DIRACGrid/diracx/releases)
-
-:: right ::
-
-<img src="/public/images/duw12/directions/architecture.png" class="w-full mb-4">
-
-<AdmonitionType type='important' >
-DIRAC and DiracX will live together for a while. One functionality at a time, we'll eventually migrate all from DIRAC to DiracX.
-</AdmonitionType>
-
-<AdmonitionType type='note' >
-"Adopt what already exists in DiracX; DIRAC is only patched, so that DiracX can progress".
-</AdmonitionType>
 
 ---
 layout: top-title-two-cols
@@ -188,10 +350,7 @@ title: ai-landscape
 - But **deciding what to build, and checking it, did not get cheaper**
   - It does not change our process: it shows its weak points sooner
 - Vague specification → verbose, AI-generated issues that go stale
-  - a clear **ADR with a scenario test** is what an agent -- or a newcomer -- can implement
 - The **review bottleneck** grows: more code means more to read, by the same two people
-- **A new kind of user**: DiracX speaks HTTP and OAuth2, so an agent can use it through MCP
-  - IHEP already operates DIRAC with an agent and MCP (DUW12)
 
 <span class="stamp">From "**DiracX developments: directions**" · A. Boyer · <a href="https://indico.cern.ch/event/1588323/contributions/7301774/">DUW12</a></span>
 
@@ -205,7 +364,7 @@ columns: is-8
 
 :: title ::
 
-# Not a port: a reimplementation
+# <img src="/public/images/diracx-logo-full.svg" class="h-14 diracx-logo"> Not a port: a reimplementation
 
 :: left ::
 
@@ -386,34 +545,38 @@ layout: top-title-two-cols
 color: diracx-light
 align: cm-lm-lm
 title: dms-elephant
-columns: is-7
+columns: is-5
 ---
 
 :: title ::
 
-# The elephant in the room
+# DMS for DiracX
 
 :: left ::
 
+## "The elephant in the room"
+### (in DiracX Workshop)
+
+<img src="/public/images/duw12/dms/elephant.png" class="w-3/5 mx-auto">
+
+:: right ::
+
 <AdmonitionType type='important' >
-diracx-Rucio integration is clearly a need for some communities.
+diracx-Rucio integration is a need for some communities.
 </AdmonitionType>
 
 <AdmonitionType type='important' >
-DIRAC data management capabilities are NOT going away. Quite the opposite, actually!
+DIRAC data management capabilities are NOT going away.
 </AdmonitionType>
 
 **Where Rucio fits in DiracX:**
 - As a **catalog**: it's just like another one
 - As a **data movement orchestrator**: external to DiracX, triggered by the Transformation System
 
-The **DiracX–Rucio interplay was not discussed** at DUW12: clearly something to define in the months to come. The data-management discussion focused on **use cases, not technicalities** -- the input collected there will drive the future Data Management ADR!
 
 <span class="stamp">From "Data Management for DiracX" · C. Haen · <a href="https://indico.cern.ch/event/1588323/contributions/7286647/">DUW12</a></span>
 
-:: right ::
 
-<img src="/public/images/duw12/dms/elephant.png" class="w-3/5 mx-auto">
 
 ---
 layout: top-title-two-cols
@@ -435,13 +598,18 @@ columns: is-6
 - The **Dirac File Catalog (DFC)**: very *POSIX-like* (directories, files, replicas), with attributes, metadata, datasets, and a security manager for permissions
   - **Multi-VO**: GridPP has implemented Multi-VO metadata (and DiracX *must* be multi-VO)
 
+:: right ::
+
+<img src="/public/images/duw12/dms/file_catalog_multiple.png" class="w-11/12 mx-auto">
+
+
 <AdmonitionType type='tip' >
 The DFC will be in DiracX, but <strong>the form is still to be decided</strong>: it needs input from every community.
 </AdmonitionType>
 
-:: right ::
-
-<img src="/public/images/duw12/dms/file_catalog_multiple.png" class="w-11/12 mx-auto">
+<br>
+<br>
+<br>
 
 <span class="stamp">From "Data Management for DiracX" · C. Haen · <a href="https://indico.cern.ch/event/1588323/contributions/7286647/">DUW12</a></span>
 
@@ -476,7 +644,18 @@ and the protocols, from LFN to URL:
 
 <img src="/public/images/duw12/dms/protocols.png" class="h-20 mx-auto">
 
+<br>
+
 <span class="stamp">From "Data Management for DiracX" · C. Haen · <a href="https://indico.cern.ch/event/1588323/contributions/7286647/">DUW12</a></span>
+
+
+---
+layout: section
+color: diracx
+title: dms
+---
+
+# Data Management for DiracX, but with Rucio
 
 ---
 layout: side-title
@@ -511,7 +690,7 @@ title: how-together
 
 :: title ::
 
-# How DIRAC and Rucio work together
+# How (legacy) DIRAC and Rucio work together
 
 :: content ::
 
@@ -525,6 +704,28 @@ Once the data is in the Rucio catalog, all the replication policies, 3rd party c
 This also means that:
 - Admins still update the DIRAC configuration
 - No change for the download/upload from jobs: still done via DIRAC's `DataManager`
+
+
+---
+layout: top-title
+color: diracx-light
+align: cm
+title: how-together-X
+---
+
+:: title ::
+
+# How DiracX and Rucio will likely work together
+
+:: content ::
+
+- The **DiracX–Rucio interplay was not much discussed** at DUW12: clearly something to define in the months to come.
+  - The data-management discussion focused on **use cases, not technicalities** -- the input collected there will drive the future Data Management ADR for DiracX
+- Nevertheless, CMS has started internal discussions about the DiracX-Rucio interplay
+  - They will be extended to other interested communities
+  - The DiracX-Rucio ADR will eventually be proposed based on such discussions
+
+
 
 ---
 layout: top-title-two-cols
@@ -594,6 +795,57 @@ columns: is-6
 <span class="stamp">From "iLCDirac + FCC" · FCC team · <a href="https://indico.cern.ch/event/1588323/contributions/7264822/">DUW12</a></span>
 
 ---
+layout: top-title-two-cols
+align: cm-cm-lm
+color: diracx-light
+columns: is-4
+title: summary
+---
+:: title ::
+
+# Summary
+
+:: left ::
+
+<img id="DiracX" src="/public/images/diracx-logo-square.svg" class="mx-auto w-4/5"> </img>
+
+:: right ::
+
+<ul class="text-base">
+  <li>DIRAC and Rucio have been used as complementary tools for exploiting distributed computing resources for a few years already.
+    <ul class="text-sm">
+      <li>The collaboration is meant to continue!</li>
+      <li>DiracX will ease the interoperability with Rucio and/or any other tool out there</li>
+      <li>Rucio as a catalog ("just like another one") or as a data movement orchestrator, triggered by the Transformation System</li>
+    </ul>
+  </li>
+  <li>DiracX is "the neXt Dirac incarnation", ensuring the future of the widely used DIRAC.
+    <ul class="text-sm">
+      <li>LHCb runs it in production; CMS and FCC are joining</li>
+      <li>Not a port: a reimplementation. You move one component at a time, and DIRAC is only patched meanwhile</li>
+      <li>Transformation System first in line, Data Management next: your input will drive the future ADRs</li>
+    </ul>
+  </li>
+</ul>
+
+
+---
+layout: section
+color: diracx
+title: Questions
+---
+
+# Questions?
+
+---
+layout: section
+color: diracx
+title: backup
+---
+
+# Backup
+
+---
 layout: top-title
 color: diracx-light
 align: cm
@@ -609,12 +861,9 @@ title: duw12-rest
 - **Deployments**: K3S for Belle2, testbed infrastructure at IN2P3, non-Kubernetes deployments
 - **AI-Assisted DIRAC Deployment and Operations at IHEP**: DiracX speaks HTTP and OAuth2, so an agent can use it (via MCP)
 - **Analytics for DiracX: more than a proposal** (D. Kalita, F. Stagni): towards a data-lakehouse analytics platform for DIRAC(X) ([slides](https://fstagni.github.io/2026_DUW_Analytics_DiracX/))
-- **RSS in DIRAC and DiracX**: the Resource Status Service, shared between the stacks
-- **No certificate authentication**: the path towards tokens (goodbye X509)
-- Community status reports: GridPP, Belle2, CMS, LHCb, JINR, CTAO, iLCDirac + FCC, IHEP, EGI and GreenDIGIT
 
 <AdmonitionType type='note' >
-All materials are (or will be) linked from the <a href="https://indico.cern.ch/event/1588323/timetable/">indico timetable</a>.
+All materials are linked from the <a href="https://indico.cern.ch/event/1588323/timetable/">indico timetable</a>.
 </AdmonitionType>
 
 ---
@@ -665,45 +914,3 @@ What you can count on:
 :: right ::
 
 <img src="/public/images/duw12/directions/increment_cycle.png" class="w-4/5 mx-auto">
-
----
-layout: top-title-two-cols
-align: cm-cm-lm
-color: diracx-light
-columns: is-4
-title: summary
----
-:: title ::
-
-# Summary
-
-:: left ::
-
-<img id="DiracX" src="/public/images/diracx-logo-square.svg" class="mx-auto w-4/5"> </img>
-
-:: right ::
-
-<ul class="text-base">
-  <li>DIRAC and Rucio have been used as complementary tools for exploiting distributed computing resources for a few years already.
-    <ul class="text-sm">
-      <li>The collaboration is meant to continue!</li>
-      <li>DiracX will ease the interoperability with Rucio and/or any other tool out there</li>
-      <li>Rucio as a catalog ("just like another one") or as a data movement orchestrator, triggered by the Transformation System</li>
-    </ul>
-  </li>
-  <li>DiracX is "the neXt Dirac incarnation", ensuring the future of the widely used DIRAC.
-    <ul class="text-sm">
-      <li>LHCb runs it in production; CMS and FCC are joining</li>
-      <li>Not a port: a reimplementation. You move one component at a time, and DIRAC is only patched meanwhile</li>
-      <li>Transformation System first in line, Data Management next: your input will drive the future ADRs</li>
-    </ul>
-  </li>
-</ul>
-
----
-layout: section
-color: diracx
-title: Questions
----
-
-# Questions?
